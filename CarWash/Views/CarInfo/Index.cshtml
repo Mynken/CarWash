@@ -1,0 +1,157 @@
+﻿@model IEnumerable<CarWash.Models.Cars.CarInfo>
+
+@{
+    ViewBag.Title = "Wszystkie samochody";
+    int sumagotowka = 0;
+    int sumakarta = 0;
+    int suma = 0;
+    int cars = 0;
+    foreach (var item in Model)
+    {
+            if (item.ArrivalTime.ToShortDateString() == DateTime.Now.ToShortDateString())
+            {
+                suma += item.Cost;
+                cars += 1;
+                if (item.Payment == "Gotówka")
+                {
+                    sumagotowka += item.Cost;
+                    //suma += sumagotowka;
+                }
+                else
+                {
+                    sumakarta += item.Cost;
+                    //suma += sumakarta;
+                }
+            }
+    }
+
+    int status1 = 0;
+    int status2 = 0;
+    int status3 = 0;
+    foreach (var item in Model)
+    {
+            switch (item.Status)
+            {
+                case "Oczekujące":
+                    status1 += 1;
+                    break;
+                case "W pracy":
+                    status2 += 1;
+                    break;
+                case "Gotowe":
+                    status3 += 1;
+                    break;
+            }
+        }
+    }
+@*<h2>Wszystkie samochody</h2>*@
+<p style="margin-top:15px; margin-bottom:5px;" align="center"><img src="~/Content/background.jpg" alt="Myjnia" width="250" height="100" /></p>
+<p style="display: inline-block;">
+    @Html.ActionLink("Nowy samochód", "Create", new { }, htmlAttributes: new { @class = "btn btn-success" })
+    @Html.ActionLink("Rezerwacja", "IndexRezerwation", new { }, htmlAttributes: new { @class = "btn btn-info" })
+    <p class="nowdate">Saldo na dzień @DateTime.Now.ToShortDateString()</p>
+    @if (User.IsInRole("Admin"))
+    {
+        <p class="nowsaldo">Suma : @suma</p>
+    }
+    else
+    {
+        <p class="nowsaldo">Gotówka: @sumagotowka &nbsp;&nbsp; Karta: @sumakarta</p>
+    }
+</p>
+<p style="font-weight: 800">Samochodów dziś : @cars</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WashType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfCar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Faktura)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th class="admin">
+            Zarządzanie
+        </th>
+    </tr>
+        @foreach (var item in Model)
+        {
+                if (item.ArrivalTime.ToShortDateString() == DateTime.Now.ToShortDateString())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArrivalTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PickUpTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WashType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeOfCar)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cost)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Faktura)
+                        </td>
+                        @if (item.Status != "Oddane")
+                        {
+                            <td style="color:orangered">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                        }
+                        <td>
+                            @Html.ActionLink("Edytowanie", "Edit", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-primary" }) |
+                            @*@Html.ActionLink("Info", "Details", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-info" }) |*@
+                            @Html.ActionLink("Usunąć", "Delete", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+            }
+        }
+
+</table>
+
+@section Scripts {
+<script type="text/javascript">
+    window.onload = function insertText() {
+        document.getElementById('name1').innerHTML = "Oczekujące <sup>@status1</sup>";
+        document.getElementById('name2').innerHTML = "W pracy <sup>@status2</sup>";
+        document.getElementById('name3').innerHTML = "Gotowi <sup>@status3</sup>";
+}
+</script>
+}

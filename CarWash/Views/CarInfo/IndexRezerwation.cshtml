@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CarWash.Models.Cars.CarInfo>
+@{
+    ViewBag.Title = "Rezerwacja";
+}
+
+<p style="margin-top:15px; margin-bottom:5px;" align="center"><img src="~/Content/background.jpg" alt="Myjnia" width="250" height="100" /></p>
+<p>
+    @Html.ActionLink("Nowa rezerwacja", "CreateRezerwation", new { }, htmlAttributes: new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WashType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfCar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Faktura)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WashType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfCar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faktura)
+            </td>
+            <td>
+                @Html.ActionLink("Edytowanie", "Edit", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Usunąć", "Delete", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-danger" }) |
+                <a href="javascript:void(0);" data-id="@item.CarId" class="btn btn-warning"> → </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section Scripts {
+
+    <script>
+        $('.btn-warning').click(function (e) {
+            e.preventDefault();
+            var $ctrl = $(this);
+            if (confirm('Tak?')) {
+                $.ajax({
+                    url: '@Url.Action("Rezerwacja")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                }).done(function (data) {
+                    if (data.Result == "OK") {
+                        $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                    }
+                }).fail(function () {
+                    alert("Error");
+                })
+
+            }
+        });
+    </script>
+}

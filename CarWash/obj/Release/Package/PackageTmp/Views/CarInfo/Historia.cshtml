@@ -1,0 +1,102 @@
+﻿@model IEnumerable<CarWash.Models.Cars.CarInfo>
+
+@{
+    ViewBag.Title = "Historia";
+
+    int suma = 0;
+    foreach (var item in Model)
+    {
+        if (item.Status != "Rezerwacja")
+        {
+
+            if (item.ArrivalTime.ToShortDateString() == DateTime.Now.ToShortDateString())
+            {
+                suma += item.Cost;
+            }
+        }
+    }
+
+
+
+    int balance = 0;
+    DateTime counter = DateTime.Now;
+    DateTime last = DateTime.Now;
+
+    Dictionary<string, int> info = new Dictionary<string, int>();
+
+    foreach (var item in Model.Take(1))
+    {
+        counter = item.ArrivalTime;
+    }
+
+
+    int q = Model.Count();
+    foreach (var item in Model.Take(q))
+    {
+        last = item.ArrivalTime;
+    }
+
+    foreach (var item in Model)
+    {
+        if (item.Status != "Rezerwacja")
+        {
+            if (item.ArrivalTime.ToShortDateString() == counter.ToShortDateString())
+            {
+                balance += item.Cost;
+                if (last == item.ArrivalTime)
+                {
+                    info.Add(counter.ToShortDateString(), balance);
+                }
+            }
+            else
+            {
+                info.Add(counter.ToShortDateString(), balance);
+                counter = item.ArrivalTime;
+                balance = item.Cost;
+                if (item.ArrivalTime == last)
+                {
+                    info.Add(counter.ToShortDateString(), balance);
+                }
+            }
+        }
+    }
+}
+
+
+
+<p style="margin-top:15px; margin-bottom:5px;" align="center"><img src="~/Content/background.jpg" alt="Myjnia" width="250" height="100" /></p>
+<p style="display: inline-block;"></p>
+
+<h2 style="margin-bottom:30px">Saldo na każdy dzień</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Data
+        </th>
+        <th>
+            Saldo
+        </th>
+    </tr>
+    @*<tr>
+        <td>
+            @DateTime.Now.ToShortDateString()
+        </td>
+        <td>
+            @suma PLN
+        </td>
+    </tr>*@
+    @foreach (KeyValuePair < string, int> item in info)
+    {
+            <tr>
+                <td>
+                    @item.Key
+                </td>
+                <td>
+                    @item.Value.ToString() PLN
+                </td>               
+            </tr>
+
+    }
+</table>
+

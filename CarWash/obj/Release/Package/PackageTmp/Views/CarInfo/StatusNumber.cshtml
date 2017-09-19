@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CarWash.Models.Cars.CarInfo>
+@{
+
+    int status1 = 0;
+    int status2 = 0;
+    int status3 = 0;
+    foreach (var item in Model)
+    {
+        switch (item.Status)
+        {
+            case "Oczekujące":
+                status1 += 1;
+                break;
+            case "W pracy":
+                status2 += 1;
+                break;
+            case "Gotowe":
+                status3 += 1;
+                break;
+        }
+    }
+}
+
+@section Scripts {
+    <script type="text/javascript">
+    window.onload = function insertText() {
+        document.getElementById('name1').innerHTML = "Oczekujące <sup>@status1</sup>";
+        document.getElementById('name2').innerHTML = "W pracy <sup>@status2</sup>";
+        document.getElementById('name3').innerHTML = "Gotowi <sup>@status3</sup>";
+}
+    </script>
+}

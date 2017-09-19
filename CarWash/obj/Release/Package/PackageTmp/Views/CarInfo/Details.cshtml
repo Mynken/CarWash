@@ -1,0 +1,88 @@
+﻿@model CarWash.Models.Cars.CarInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CarInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickUpTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickUpTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WashType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WashType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TakeConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TakeConfirmed)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

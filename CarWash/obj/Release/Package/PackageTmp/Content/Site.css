@@ -1,0 +1,318 @@
+﻿@import url('/fonts/IndieFlower.ttf');
+@import url('/fonts/Lobster-Regular.ttf');
+
+body {
+    padding-top: 50px;
+    padding-bottom: 0px;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    letter-spacing: 3px;
+}
+
+#registerLink {
+}
+
+#loginLink {
+}
+
+#Color {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: black;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+    #Color:hover {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+.option_inside {
+    color: grey;
+    font-size: 16px;
+}
+
+#WashType {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: black;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+    #WashType:hover {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+#TypeOfCar {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: black;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+    #TypeOfCar:hover {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+#Payment {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: black;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+    #Payment:hover {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.container .colapse {
+    color: white;
+}
+
+.navbar {
+    letter-spacing: 3px;
+    font-family: 'Lobster', cursive;
+}
+
+.navbar-nav li {
+    border-left: 1px solid silver;
+}
+
+.navbar-nav .last {
+    border-right: 1px solid silver;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    font-size: 12pt;
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+ul.navbar-right {
+    font-weight: bold;
+}
+
+.p {
+    margin-bottom: 20px;
+}
+
+.create_new button.large {
+    background-color: hsl(199, 100%, 27%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4cc6fe", endColorstr="#005e89");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#4cc6fe), to(#005e89));
+    background-image: -moz-linear-gradient(top, #4cc6fe, #005e89);
+    background-image: -ms-linear-gradient(top, #4cc6fe, #005e89);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4cc6fe), color-stop(100%, #005e89));
+    background-image: -webkit-linear-gradient(top, #4cc6fe, #005e89);
+    background-image: -o-linear-gradient(top, #4cc6fe, #005e89);
+    background-image: linear-gradient(#4cc6fe, #005e89);
+    border-color: #005e89 #005e89 hsl(199, 100%, 17.5%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.62);
+    -webkit-font-smoothing: antialiased;
+}
+
+.create_new button.large {
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0px -1px black;
+}
+
+.create_new button:hover {
+    color: black;
+}
+
+.create_new button.large:hover {
+    opacity: 0.9;
+}
+
+tbody {
+    background: #eeeeee;
+    border-radius: 10px;
+}
+
+    tbody .fa {
+        font-size: 18px;
+    }
+
+    tbody a .fa-edit {
+        color: green;
+    }
+
+    tbody a .fa-info-circle {
+        color: #354CC3;
+    }
+
+    tbody a .fa-trash-o {
+        color: red;
+    }
+
+    tbody tr {
+        height: 57px;
+        padding: 20px 0;
+    }
+
+.th_first {
+    border-left: 1px solid silver;
+}
+
+.th_last {
+    width: 114px;
+}
+
+.first {
+    border-left: 1px solid silver;
+}
+
+
+
+.table th {
+    border-right: 1px solid silver;
+}
+
+.table td {
+    border-right: 1px solid silver;
+    min-width: 61px;
+}
+
+tbody td a i {
+    text-align: center;
+    margin: 4px 0 0 0;
+}
+
+    tbody td a i:hover {
+        opacity: 0.7;
+    }
+
+span.mark {
+    float: left;
+    text-align: left;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+span.date {
+    float: right;
+    font-weight: 600;
+}
+
+span.prise {
+    float: left;
+    font-weight: 600;
+}
+
+span.prise_2 {
+    float: right;
+    font-weight: 600;
+}
+
+
+.check-box {
+    width: 16px;
+    height: 16px;
+    color: green;
+}
+
+
+
+
+footer {
+    position: relative;
+    background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+    min-width: 100%;
+    height: 51px;
+    bottom: 0px;
+}
+
+    footer p {
+        float: left;
+        color: silver;
+        margin: 15px 0 15px 15px;
+        font-family: 'Lobster', cursive;
+        letter-spacing: 3px;
+        font-size: 16px;
+    }
+
+.nowdate {
+    text-align: right;
+    width: 79%;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: 800;
+}
+
+.nowsaldo {
+    text-align: right;
+    font-weight: 800;
+    width: 99%;
+}
+
+.admin {
+    width: 250px;
+}
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 15px 5px;
+}

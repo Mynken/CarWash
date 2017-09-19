@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CarWash.Models.Cars.CarInfo>
+@{
+    ViewBag.Title = "Gotowi";
+}
+
+<h2>Gotowi</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WashType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidConfirmed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TakeConfirmed)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WashType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TakeConfirmed)
+            </td>
+            <td>
+                @Html.ActionLink("Zmienić ", "EditFinish", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-success" }) 
+                @*<a href="javascript:void(0);" data-id="@item.CarId" class="btn btn-warning">Oddane</a>*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section Scripts {
+
+    <script>
+        $('.btn-warning').click(function (e) {
+            e.preventDefault();
+            var $ctrl = $(this);
+            if (confirm('Tak?')) {
+                $.ajax({
+                    url: '@Url.Action("InFinish")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                }).done(function (data) {
+                    if (data.Result == "OK") {
+                        $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                    }
+                }).fail(function () {
+                    alert("Error");
+                })
+
+            }
+        });
+    </script>
+}

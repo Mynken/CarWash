@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CarWash.Models.Cars.CarInfo>
+
+@{
+    ViewBag.Title = "Wszystkie samochody";
+    int cars = 0;
+    foreach (var item in Model)
+    {
+            cars += 1;
+    }
+}
+@*<h2>Wszystkie samochody</h2>*@
+<p style="margin-top:15px; margin-bottom:5px;" align="center"><img src="~/Content/background.jpg" alt="Myjnia" width="250" height="100" /></p>
+<p style="display: inline-block;">
+    @Html.ActionLink("Nowy samochód", "Create", new { }, htmlAttributes: new { @class = "btn btn-success" })
+    @Html.ActionLink("Rezerwacja", "IndexRezerwation", new { }, htmlAttributes: new { @class = "btn btn-info" })
+<p class="nowdate">Wszystkie samochody: @cars</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickUpTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WashType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfCar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Faktura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th class="admin">
+            Zarządzanie
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PickUpTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WashType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOfCar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Faktura)
+                </td>
+                @if (item.Status != "Oddane")
+                {
+                    <td style="color:orangered">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Edytowanie", "Edit", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-primary" }) |
+                    @*@Html.ActionLink("Info", "Details", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-info" }) |*@
+                    @Html.ActionLink("Usunąć", "Delete", new { id = item.CarId }, htmlAttributes: new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+    }
+
+</table>
+
+

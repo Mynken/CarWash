@@ -1,0 +1,43 @@
+﻿@model CarWash.Models.IndexViewModel
+@{
+    ViewBag.Title = "Zarządzanie";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Zmień ustawienia konta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Haslo:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Zmień swoje hasło", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>   
+        @if (User.IsInRole("Admin"))
+        {
+            <dt>Dodać admina:</dt>
+            <dd>
+                [ @Html.ActionLink("Dodanie", "Register", "Account") ]
+            </dd>
+        }
+        <dt>Historia:</dt>
+        <dd>
+            [ @Html.ActionLink("Historia", "Historia", "CarInfo") ]
+        </dd>     
+        <dt>Wszystkie samochody</dt>
+        <dd>
+            [ @Html.ActionLink("Wszystkie samochody", "INdexAll", "CarInfo") ]
+        </dd>
+       
+    </dl>
+</div>
